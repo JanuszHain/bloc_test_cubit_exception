@@ -12,7 +12,7 @@ class TestCubit extends Cubit<TestState> {
     if (index >= 0 && index <= 2) {
       emit(TestIndex(index));
     } else {
-      throw new CustomException('Index out of bounds');
+      throw CustomException('Index out of bounds');
     }
   }
 
@@ -21,10 +21,10 @@ class TestCubit extends Cubit<TestState> {
       emit(TestIndex(index));
     } else {
       // Doesn't work - test is pending all the time with this code - no idea why
-      //throw CubitUnhandledErrorException(this, new CustomException('Index out of bounds'));
+      // throw CubitUnhandledErrorException(this, CustomException('Index out of bounds'));
       // This works
       Future.error(CubitUnhandledErrorException(
-          this, new CustomException('Index out of bounds')));
+          this, CustomException('Index out of bounds')));
     }
   }
 }
