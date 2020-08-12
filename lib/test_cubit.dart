@@ -15,4 +15,16 @@ class TestCubit extends Cubit<TestState> {
       throw new CustomException('Index out of bounds');
     }
   }
+
+  Future<void> changeIndexCubitException(int index) async {
+    if (index >= 0 && index <= 2) {
+      emit(TestIndex(index));
+    } else {
+      // Doesn't work - test is pending all the time with this code - no idea why
+      //throw CubitUnhandledErrorException(this, new CustomException('Index out of bounds'));
+      // This works
+      Future.error(CubitUnhandledErrorException(
+          this, new CustomException('Index out of bounds')));
+    }
+  }
 }

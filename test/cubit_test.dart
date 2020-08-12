@@ -36,11 +36,18 @@ main() {
      * Bloc's stream internally is changing thrown error to CubitUnhandledErrorException and throws aagain
      * blocTest doesn't handle exceptions that isn't CubitUnhandledErrorException
      */
-    blocTest('index 3 or more should throw exception',
-        build: () => TestCubit(),
-        act: (TestCubit cubit) => cubit.changeIndex(3),
-        errors: [
-          isA<CustomException>()
-        ]);
+    blocTest(
+      'index 3 or more should throw exception, unit test working incorrectly',
+      build: () => TestCubit(),
+      act: (TestCubit cubit) => cubit.changeIndex(3),
+      errors: [isA<CustomException>()],
+    );
+
+    blocTest(
+      'index 3 or more should throw exception, unit test working correctly',
+      build: () => TestCubit(),
+      act: (TestCubit cubit) async => cubit.changeIndexCubitException(3),
+      errors: [isA<CustomException>()],
+    );
   });
 }
