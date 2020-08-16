@@ -33,9 +33,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  bloc: ^6.0.1
+  bloc: ^6.0.2
   flutter_bloc: ^6.0.1
-  bloc_test: ^7.0.0
+  bloc_test: ^7.0.1
   equatable: ^1.2.3
 
 # For information on the generic Dart part of this file, see the

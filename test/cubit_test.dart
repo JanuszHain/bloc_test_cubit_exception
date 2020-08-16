@@ -32,19 +32,17 @@ main() {
     );
 
     /**
-     * Doesn't work, because exception thrown from Future isn't CubitUnhandledErrorException (unlike from bloc's Stream)
-     * Bloc's stream internally is changing thrown error to CubitUnhandledErrorException and throws aagain
-     * blocTest doesn't handle exceptions that isn't CubitUnhandledErrorException
+     * Works fine, fixed in bloc_test 7.0.1
      */
     blocTest(
-      'index 3 or more should throw exception, unit test working incorrectly',
+      'index 3 or more should throw exception',
       build: () => TestCubit(),
       act: (TestCubit cubit) => cubit.changeIndex(3),
       errors: [isA<CustomException>()],
     );
 
     blocTest(
-      'index 3 or more should throw exception, unit test working correctly',
+      'index 3 or more should throw exception wrapped in CubitUnhandledErrorException',
       build: () => TestCubit(),
       act: (TestCubit cubit) async => cubit.changeIndexCubitException(3),
       errors: [isA<CustomException>()],
